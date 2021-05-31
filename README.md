@@ -32,10 +32,11 @@ bash script.sh
 ### Step 3:
 To visualize the results, run this file using:
 ```
-python3 plot.py --n_plots=10
+python3 plot.py 
 
 ```
 ## Results
 
 Once all commands are run, the plots should look like this example image. You can notice that the bounding box locating the person is removed.
+
 ![result](pics/result.png)
