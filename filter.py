@@ -16,19 +16,19 @@ class_to_remove = ['Person','Man','Boy','Girl', 'Mammal','Woman', 'Human mouth',
                    'Human body', 'Human foot', 'Human leg', 
                    'Human ear', 'Human hair', 'Human head',
                    'Human arm','Human face', 'Human nose',
-                   'Human hand', 'Human eye', 'Human beard']  
+                   'Human hand', 'Human eye', 'Human beard'] 
 
 
 #select number of images to download
 n_images = 2000 
-split = "validation" #Do not change this. 
-                     #Code has assumed that you downloaded validation annotations.
+split = "validation" #Code has assumed that you downloaded validation annotations.
+                     #To change this, first download training annotations.
 
 #%%  Function to genearte label files in YOLOv3 format 
 def generate_labels(annot_filt, n_images, class_desc):
     annot_filt = np.array(annot_filt)
     label_path = 'data/labels/'
-    image_path = 'data/images/'
+    #image_path = 'data/images/'
     unq_id= []
     
     for count,(ID, mid, xmin, xmax, ymin, ymax) in enumerate(annot_filt):
@@ -42,16 +42,12 @@ def generate_labels(annot_filt, n_images, class_desc):
             break
         
         labelname = str(ID) + ".txt"
-        imagename = str(ID) + ".jpg"
         full_label_path = os.path.join(label_path, labelname)
-        full_image_path = os.path.join(image_path, imagename)
-    
         file = open(full_label_path, "a+")
-        file.write(full_image_path + " " + str(xmin) + "," + str(xmax) + "," + 
-                   str(ymin) + "," + str(ymax) + "," + str(class_id) + "\n")
+        file.write(str(xmin) + "," + str(xmax) + "," + str(ymin) + 
+                   "," + str(ymax) + "," + str(class_id) + "\n")
         file.close()
         
-
     return unq_id[:-1]
 
 #Function to generate .txt file with unique Image ID's for download
@@ -68,23 +64,28 @@ def generate_Image_Ids(unq_ids):
 
 #%% Main function
 def main(): 
-    #Import data using pandas
+
+    #Import data using pandas 
     annot = pd.read_csv (r'validation-annotations-bbox.csv')
-    annot = annot[['ImageID','LabelName','XMin', 'XMax', 'YMin', 'YMax']]
-
-    class_desc = pd.read_csv (r'class-descriptions-boxable.csv', header=None)
-    class_desc.columns = ["mid", "class"]
-
     v_annot = pd.read_csv (r'validation-annotations-human-imagelabels-boxable.csv')
+    class_desc = pd.read_csv (r'class-descriptions-boxable.csv', header=None)
+    
+    #Remove unnecessary columns and add missing header
+    annot = annot[['ImageID','LabelName','XMin', 'XMax', 'YMin', 'YMax']]
+    class_desc.columns = ["mid", "class"]
+    
+
+    # Preserve only those annotations whose confidence score=1
     v_annot = v_annot[v_annot['Confidence']==1]
 
-
-    #filtering data by removing selected classes 
+    #Filtering annotations by removing ImageIDs containing selected classes 
     mids = class_desc[class_desc['class'].isin(class_to_remove)]['mid']
-    v_annot = v_annot[~v_annot['LabelName'].isin(list(mids))]
-    #annot_filt = annot[~annot['LabelName'].isin(list(mids))]
-
-    #Preserve only those annotations having confidence score = 1
+    ImageIDs = v_annot.loc[v_annot['LabelName'].isin(mids)]['ImageID']
+    ImageIDs = ImageIDs.drop_duplicates()
+    v_annot = v_annot.loc[~v_annot['ImageID'].isin(ImageIDs)]
+ 
+    #Preserve only those annotations in annot which appear in v_annot 
+    #(because only those have confidence==1)
     idxs = list(zip(v_annot.ImageID.values, v_annot.LabelName.values))
     annot_filt = annot[pd.Series(list(zip(annot.ImageID, annot.LabelName)), 
                              index=annot.index).isin(idxs)]
@@ -93,10 +94,7 @@ def main():
     #Generate ImageID's to download and label files in YOLOv3 format 
     unq_ids = generate_labels(annot_filt, n_images, class_desc)
     generate_Image_Ids(unq_ids)
-
+    
 if __name__ == "__main__":
     main()
 
-
-    
-    

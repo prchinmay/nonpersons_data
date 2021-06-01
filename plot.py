@@ -17,7 +17,7 @@ import matplotlib.image as mpimg
 
 #%%choose number of images to print at once
 
-n_plots = 20
+n_plots = 10
 
 #%% plotting function
 def plot_image(image, boxes, class_desc):
@@ -66,8 +66,9 @@ def plot_image(image, boxes, class_desc):
 
 
 
-#%%
+#%% Main function
 def main(): 
+
     
     #Read data from files
     label_list = os.listdir('data/labels')
@@ -78,53 +79,17 @@ def main():
     for i in range(n_plots):  
         x = random.randint(len(label_list))
         labelname = label_list[x]
+        imagename = labelname[:-4]
         full_label_path = os.path.join('data/labels', labelname)
-        label = pd.read_csv(full_label_path, delimiter = "\t", header=None)
-        label = label[0].str.split(" ", n=1, expand = True)
-        ImagePath = label[0][0]
-        boxes = label[1].str.split(",", n=4, expand = True)
+        full_image_path = os.path.join('data/images', str(imagename) + '.jpg')
+        boxes = pd.read_csv(full_label_path, delimiter = "\t", header=None)
+        boxes = boxes[0].str.split(",", n=4, expand = True)
         boxes = np.array(boxes).astype(np.float32)
-        image = mpimg.imread(ImagePath)
+        image = mpimg.imread(full_image_path)
         
         plot_image(image, boxes, class_desc)
-        
-        
+    
 if __name__ == "__main__":
     main()
-    
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        

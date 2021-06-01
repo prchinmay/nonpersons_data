@@ -2,19 +2,16 @@ nonpersons_data
 =================
 
 ## Overview
-This repository contains code for removing person related bounding boxes from annotated data, downloaded from Google open image V6 dataset for object detection application https://storage.googleapis.com/openimages/web/index.html 
-
-**Keywords:** bounding box, annotations, labels.
+This repository contains code for downloading 2000 non-person images from Google open image V6 dataset for object detection applications (https://storage.googleapis.com/openimages/web/index.html).
 
 ## Usage
 
 ### Dependencies
+Install dependiencies using:
+```
+pip install -r requirements.txt
 
-- [Python 3.8.5](https://www.python.org/downloads/)
-- numpy 1.19.2(https://numpy.org/install/)
-- pandas 1.1.3 (https://anaconda.org/anaconda/pandas)
-- matplotlib 3.3.2 (https://anaconda.org/conda-forge/matplotlib)
-
+```
 ### Step 1: 
 
 Open a linux terminal and clone this repository to your workspace using:
@@ -32,11 +29,51 @@ bash script.sh
 ### Step 3:
 To visualize the results, run this file using:
 ```
-python3 plot.py 
+python plot.py 
 
 ```
 ## Results
 
-Once all commands are run, the plots should look like this example image. You can notice that the bounding box locating the person is removed.
+Once all commands are run, the plots should look like this example image. Those classes that were chosen to be deleted from filter.py, should not appear in the images.
 
-![result](pics/result.png)
+![car](pics/car.png)![frog](pics/frog.png)
+![monkey](pics/monkey.png)![spoon](pics/spoon.png)
+
+## Customizing
+
+### Change split
+The code is written assuming that you downloaded validation set annotations. If you want to download images from training set/test set, download the appropriate annotation files from https://storage.googleapis.com/openimages/web/download.html. Refer to the image below to know which files to download. In this example, I have downloaded only validation annotations.
+
+![download](pics/annot_files.png)
+
+Once downloaded, make sure that you also change the respective file names in the imports section of filter.py file.
+```
+annot = pd.read_csv (r'validation-annotations-bbox.csv')
+v_annot = pd.read_csv (r'validation-annotations-human-imagelabels-boxable.csv')
+
+```
+### Select which class to remove
+Select the classes to remove in filter.py
+
+```
+class_to_remove = ['Person','Man','Boy','Girl', 'Mammal','Woman', 'Human mouth', 
+                   'Human body', 'Human foot', 'Human leg', 
+                   'Human ear', 'Human hair', 'Human head',
+                   'Human arm','Human face', 'Human nose',
+                   'Human hand', 'Human eye', 'Human beard']
+```
+
+### Change number of images to download
+
+Select the number of images to download in filter.py
+
+```
+n_images = 2000 
+
+```
+
+
+
+
+
+
