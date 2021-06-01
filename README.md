@@ -6,7 +6,7 @@ This repository contains code for downloading 2000 non-person images from Google
 
 ## Usage
 
-##Clone repositiry
+## Clone repository
 Open a linux terminal and clone this repository to your workspace using:
 ```
 git clone https://github.com/prchinmay/nonpersons_data.git
