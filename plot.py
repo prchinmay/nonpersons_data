@@ -24,8 +24,8 @@ def plot_image(image, boxes, class_desc):
     """
     Plots specified bounding boxes on the image
     
-    box[0] is XMax, box[2] is YMax
-    box[1] is XMin, box[3] is YMin
+    box[0] is XMin, box[1] is YMin
+    box[2] is XMax, box[3] is YMax
     box[4] is class_id
     
     """
@@ -46,12 +46,12 @@ def plot_image(image, boxes, class_desc):
         class_id = int(box[4])
         class_name = class_desc['class'][class_id]
         
-        upper_left_x = box[1]
-        upper_left_y = box[3]
+        upper_left_x = box[0]
+        upper_left_y = box[1]
         rect = patches.Rectangle(
             (upper_left_x * width, upper_left_y * height),
-            (box[0]-box[1]) * width,
-            (box[2] - box[3]) * height,
+            (box[2]-box[0]) * width,
+            (box[3] - box[1]) * height,
             linewidth=1,
             edgecolor="r",
             facecolor="none",
@@ -59,12 +59,10 @@ def plot_image(image, boxes, class_desc):
         # Add the patch to the Axes
         ax.add_patch(rect)
         #Add class-text to picture
-        ax.text(box[0]*width,box[2]*height, class_name, fontsize=10, color = 'red')
+        ax.text(box[0]*width,box[1]*height, class_name, fontsize=10, color = 'red')
+        
     plt.show()
         
-        
-
-
 
 #%% Main function
 def main(): 
@@ -91,5 +89,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-        
-        

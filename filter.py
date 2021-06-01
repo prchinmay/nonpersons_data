@@ -44,7 +44,7 @@ def generate_labels(annot_filt, n_images, class_desc):
         labelname = str(ID) + ".txt"
         full_label_path = os.path.join(label_path, labelname)
         file = open(full_label_path, "a+")
-        file.write(str(xmin) + "," + str(xmax) + "," + str(ymin) + 
+        file.write(str(xmin) + "," + str(ymin) + "," + str(xmax) + 
                    "," + str(ymax) + "," + str(class_id) + "\n")
         file.close()
         

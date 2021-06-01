@@ -36,10 +36,12 @@ python plot.py
 ```
 ## Results
 
-Once all commands are run, the plots should look like this example image. Those classes that were chosen to be deleted from filter.py should not appear in the images.
+Once all commands are run, the plots should look like this example image. Those classes that were chosen to be deleted from filter.py should not appear in the images. Everytime the script is run, it shows 10 random images with bounding boxes.
 
 ![car](pics/car.png)![frog](pics/frog.png)
 ![monkey](pics/monkey.png)![spoon](pics/spoon.png)
+
+There should be 2000 images in `data/images` folder and 2000 annotation files in `data/labels`. The annotation files are in the format `XMin, YMin, XMax, Ymax, Class_id`
 
 ## Customizing
 
@@ -48,14 +50,14 @@ The code is written assuming that you downloaded validation set annotations. If 
 
 ![download](pics/annot_files.png)
 
-Once downloaded, make sure that you also change the respective file names in the imports section of filter.py file.
+Once downloaded, make sure that you also change the respective file names in the imports section of file `filter.py`
 ```
 annot = pd.read_csv (r'validation-annotations-bbox.csv')
 v_annot = pd.read_csv (r'validation-annotations-human-imagelabels-boxable.csv')
 
 ```
 ### Select which class to remove
-Select the classes to remove in filter.py
+Select the classes to remove in `filter.py`
 
 ```
 class_to_remove = ['Person','Man','Boy','Girl', 'Mammal','Woman', 'Human mouth', 
@@ -67,7 +69,7 @@ class_to_remove = ['Person','Man','Boy','Girl', 'Mammal','Woman', 'Human mouth',
 
 ### Change number of images to download
 
-Select the number of images to download in filter.py
+Select the number of images to download in `filter.py`
 
 ```
 n_images = 2000 
