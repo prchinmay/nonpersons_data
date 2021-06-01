@@ -6,35 +6,37 @@ This repository contains code for downloading 2000 non-person images from Google
 
 ## Usage
 
-### Dependencies
+##Clone repositiry
+Open a linux terminal and clone this repository to your workspace using:
+```
+git clone https://github.com/prchinmay/nonpersons_data.git
+cd nonpersons_data
+
+```
+### Install Dependencies
 Install dependiencies using:
 ```
 pip install -r requirements.txt
 
 ```
-### Step 1: 
 
-Open a linux terminal and clone this repository to your workspace using:
-```
-git clone https://github.com/prchinmay/nonpersons_data.git
+### Step 1:
 
-```
-### Step 2:
-
-To generate non-persons labels, and download corresponding images from Google open image V6, run this command in the terminal:
+After dependencies are installed, run this command in you linux terminal to generate non-persons ImageIDs and labels in YOLOv3 format. This script creates related folders and executes downloader.py and filter.py.
+ 
 ```
 bash script.sh
 
 ```
 ### Step 3:
-To visualize the results, run this file using:
+To visualize the results, run this file in you linux terminal using:
 ```
 python plot.py 
 
 ```
 ## Results
 
-Once all commands are run, the plots should look like this example image. Those classes that were chosen to be deleted from filter.py, should not appear in the images.
+Once all commands are run, the plots should look like this example image. Those classes that were chosen to be deleted from filter.py should not appear in the images.
 
 ![car](pics/car.png)![frog](pics/frog.png)
 ![monkey](pics/monkey.png)![spoon](pics/spoon.png)
