@@ -28,7 +28,7 @@ After dependencies are installed, run this command in you linux terminal to gene
 bash script.sh
 
 ```
-### Step 3:
+### Step 2:
 To visualize the results, run this file in you linux terminal using:
 ```
 python plot.py 
