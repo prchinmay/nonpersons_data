@@ -7,12 +7,21 @@ This repository contains code for downloading 2000 non-person images from Google
 ## Usage
 
 ## Clone repository
-Open a linux terminal and clone this repository to your workspace using:
+Open a linux terminal and clone this repository to your workspace using(copy paste entire thing):
 ```
-git clone https://github.com/prchinmay/nonpersons_data.git
+git clone https://github.com/prchinmay/nonpersons_data.git &
 cd nonpersons_data
 
 ```
+
+###Create new virtual environment
+Before intalling dependencies, let us first create a new virtual environment using(copy paste the entire thing):
+```
+python3 -m pip install --user virtualenv &
+python3 -m virtualenv env &
+source env/bin/activate
+```
+
 ### Install Dependencies
 Install dependiencies using:
 ```
