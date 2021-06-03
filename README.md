@@ -40,9 +40,10 @@ bash script.sh
 
 ## Results
 
-There should be 2000 images in `data/images` folder and 2000 annotation files in `data/labels`. The annotation files are in the format:
-Row format: `image_file_path box1 box2 ... boxN`;
-Box format: `x_min,y_min,x_max,y_max,class_id` 
+There should be 2000 images in `data/images` folder and 2000 annotation files in `data/labels`. 
+ The annotation files are in the format:
+ Row format: `image_file_path box1 box2 ... boxN`;
+ Box format: `x_min,y_min,x_max,y_max,class_id` 
 
 ## Customizing
 
