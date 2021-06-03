@@ -6,7 +6,7 @@ This repository contains code for downloading 2000 non-person images from Google
 
 ## Usage
 
-## Clone repository
+### Step 1: Clone repository
 Open a linux terminal and clone this repository to your workspace using(copy paste entire thing):
 ```
 git clone https://github.com/prchinmay/nonpersons_data.git &
@@ -14,7 +14,7 @@ cd nonpersons_data
 
 ```
 
-### Create new virtual environment
+### Step 2: Create new virtual environment
 Before intalling dependencies, let us first create a new virtual environment using(copy paste the entire thing):
 ```
 python3 -m pip install --user virtualenv &
@@ -22,14 +22,14 @@ python3 -m virtualenv env &
 source env/bin/activate
 ```
 
-### Install Dependencies
+### Step 3: Install Dependencies
 Install dependiencies using:
 ```
 pip install -r requirements.txt
 
 ```
 
-### Step 1:
+### Step 4: Run Code
 
 After dependencies are installed, run this command in you linux terminal to generate non-persons ImageIDs, download those Images and generate labels in YOLOv3 format.
  
