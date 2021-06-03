@@ -9,6 +9,8 @@ mkdir data/labels
                                                                                                                                                    
 python filter.py                                                                                        
 python downloader.py ImageIds.txt --download_folder=data/images --num_processes=5
+python gen_label.py
+
 
 
 

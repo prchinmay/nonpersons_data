@@ -31,26 +31,18 @@ pip install -r requirements.txt
 
 ### Step 1:
 
-After dependencies are installed, run this command in you linux terminal to generate non-persons ImageIDs and labels in YOLOv3 format. This script creates related folders, executes `filter.py` and `downloader.py`.
+After dependencies are installed, run this command in you linux terminal to generate non-persons ImageIDs, download those Images and generate labels in YOLOv3 format.
  
 ```
 bash script.sh
 
 ```
-### Step 2:
-To visualize the results, run this file in you linux terminal using:
-```
-python plot.py 
 
-```
 ## Results
 
-Once all commands are run, the plots should look like this example image. Those classes that were chosen to be deleted from `filter.py` should not appear in the images. Everytime the script is run, it shows 10 random images with bounding boxes.
-
-![car](pics/car.png)![frog](pics/frog.png)
-![monkey](pics/monkey.png)![spoon](pics/spoon.png)
-
-There should be 2000 images in `data/images` folder and 2000 annotation files in `data/labels`. The annotation files are in the format `XMin, YMin, XMax, Ymax, Class_id`
+There should be 2000 images in `data/images` folder and 2000 annotation files in `data/labels`. The annotation files are in the format:
+Row format: `image_file_path box1 box2 ... boxN`;
+Box format: `x_min,y_min,x_max,y_max,class_id` 
 
 ## Customizing
 
